@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body data-th-object="${orderSummary}">
+    <h1>Enter order number:</h1>
+    <form method="get" data-th-action="@{/order/total/{id}(id = ${orderSummary.orderId})}">
+        <label for="id">Order id:</label>
+        <input type="text" id="id" data-th-field="*{orderId}" />
+        <button type="submit">Search</button>
+    </form>
+
+    <div data-th-if="${orderSummary.orderId != null}">
+        <hr>
+        <h1>Order Summary</h1>
+        <table>
+            <tr>
+                <td>Order id:</td>
+                <td data-th-text="*{orderId}"></td>
+            </tr>
+            <tr>
+                <td>Order date:</td>
+                <td data-th-text="*{orderDate}"></td>
+            </tr>
+            <tr>
+                <td>Customer id:</td>
+                <td data-th-text="*{customerId}"></td>
+            </tr>
+            <tr>
+                <td>Total:</td>
+                <td data-th-text="*{total}"></td>
+            </tr>
+            <tr>
+                <td>Cost price:</td>
+                <td data-th-text="*{costPrice}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
